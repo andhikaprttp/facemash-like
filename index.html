@@ -56,15 +56,11 @@
         var totalScore = selectedFace.score + otherFace.score;
         var selectedFaceProbability = selectedFace.score / totalScore;
         var otherFaceProbability = otherFace.score / totalScore;
-
-        // Update probabilities
         selectedFace.score = Math.round(selectedFaceProbability * 100);
         otherFace.score = Math.round(otherFaceProbability * 100);
-
         displayScores();
         loadNewFaces();
       }
-
       function displayScores() {
         console.log("Face 1 Score: " + faces[0].score);
         console.log("Face 2 Score: " + faces[1].score);
