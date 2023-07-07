@@ -48,14 +48,10 @@
           selectedFace = faces[1];
           otherFace = faces[0];
         }
-
-        // Update scores
         selectedFace.score += 1;
-
-        // Calculate new scores
-        var totalScore = selectedFace.score + otherFace.score;
-        var selectedFaceProbability = selectedFace.score / totalScore;
-        var otherFaceProbability = otherFace.score / totalScore;
+        let totalScore = selectedFace.score + otherFace.score;
+        let selectedFaceProbability = selectedFace.score / totalScore;
+        let otherFaceProbability = otherFace.score / totalScore;
         selectedFace.score = Math.round(selectedFaceProbability * 100);
         otherFace.score = Math.round(otherFaceProbability * 100);
         displayScores();
