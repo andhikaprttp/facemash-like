@@ -24,7 +24,71 @@
       </div>
     </div>
     <script>
-      
+      var faces = [
+  {
+    src: 'path_to_image1.jpg',
+    score: 100
+  },
+  {
+    src: 'path_to_image2.jpg',
+    score: 200
+  },
+  {
+    src: 'path_to_image3.jpg',
+    score: 50
+  }
+];
+
+function vote(face) {
+  var selectedFace;
+  var otherFace;
+
+  if (face === 'face1') {
+    selectedFace = faces[0];
+    otherFace = faces[1];
+  } else if (face === 'face2') {
+    selectedFace = faces[1];
+    otherFace = faces[0];
+  }
+
+  // Update scores
+  selectedFace.score += 1;
+
+  // Calculate new scores
+  var totalScore = selectedFace.score + otherFace.score;
+  var selectedFaceProbability = selectedFace.score / totalScore;
+  var otherFaceProbability = otherFace.score / totalScore;
+
+  // Update probabilities
+  selectedFace.score = Math.round(selectedFaceProbability * 100);
+  otherFace.score = Math.round(otherFaceProbability * 100);
+
+  displayScores();
+  loadNewFaces();
+}
+
+function displayScores() {
+  console.log('Face 1 Score: ' + faces[0].score);
+  console.log('Face 2 Score: ' + faces[1].score);
+}
+
+function loadNewFaces() {
+  // Logic to load new faces based on ranking algorithm
+  // You can sort the 'faces' array based on the score and then load the first two faces
+
+  // Sort faces based on score (in descending order)
+  faces.sort(function (a, b) {
+    return b.score - a.score;
+  });
+
+  // Replace the src attribute of the img elements with the paths to the new images
+  document.getElementById('face1').src = faces[0].src;
+  document.getElementById('face2').src = faces[1].src;
+}
+
+// Initialize the page
+loadNewFaces();
+
     </script>
   </body>
 </html>
